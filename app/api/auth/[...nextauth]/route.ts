@@ -3,11 +3,17 @@ import GithubProvider from 'next-auth/providers/github'
 
 export const authOptions: NextAuthOptions = {
   providers: [
+    // Github OAuth によるログイン設定
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID ?? '',
       clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
     }),
   ],
+
+  // セッショントークンに JWT を指定
+  session: {
+    strategy: 'jwt',
+  },
 }
 
 // NextAuth.js を初期化
