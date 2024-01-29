@@ -10,6 +10,9 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
+  // JWT を暗号化するための値を設定
+  secret: process.env.NEXTAUTH_SECRET,
+
   // セッショントークンに JWT を指定
   session: {
     strategy: 'jwt',
