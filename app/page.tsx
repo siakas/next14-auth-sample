@@ -1,61 +1,61 @@
 'use client'
 
+import { LogoutButton } from '@/components/LogoutButton'
+import { buttonVariants } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
 
-  return (
-    <></>
+  return session ? (
+    <>
+      <div className="flex h-auto min-h-screen w-full items-center justify-center">
+        <Card className="max-sm:flex max-sm:w-full max-sm:flex-col max-sm:items-center max-sm:justify-center max-sm:rounded-none max-sm:border-none sm:min-w-[370px] sm:max-w-[368px]">
+          <CardHeader className="space-y-1">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-2xl">ようこそ</CardTitle>
+            </div>
+            <CardDescription>{session.user?.name} さん</CardDescription>
+          </CardHeader>
 
-    // <div className="flex flex-col overflow-hidden">
-    //   <header></header>
-    //   <main className="flex-1">
-    //     <div className="grid h-screen place-items-center gap-16 md:gap-32">
-    //       <div className="z-10 flex flex-col justify-center gap-4 sm:flex-row">
-    //         <Link
-    //           href="/signin"
-    //           className={cn(
-    //             buttonVariants({ size: 'lg' }),
-    //             'transition-all duration-200 ease-out md:hover:-translate-y-1 font-semibold',
-    //           )}
-    //         >
-    //           ログイン
-    //         </Link>
-    //       </div>
-    //     </div>
-    //   </main>
-    //   <footer></footer>
-    // </div>
+          <CardContent>
+            {session.user?.image !== null && (
+              <div className="flex items-center justify-center">
+                <img
+                  src={session.user?.image}
+                  alt=""
+                  className="size-12 rounded-full"
+                />
+              </div>
+            )}
+          </CardContent>
 
-    // <main className="p-20">
-    //   <div>
-    //     <p>hogehoge</p>
-
-    //     {session ? (
-    //       <>
-    //         <p>ログインしています</p>
-    //         <p>セッションの有効期限：{session.expires}</p>
-    //         <p>ようこそ、{session.user?.name}さん</p>
-    //         <p>{session.user?.email}</p>
-    //         {session.user?.image !== null && (
-    //           <p>
-    //             <img
-    //               src={session.user?.image}
-    //               alt=""
-    //               className="size-12 rounded-full"
-    //             />
-    //           </p>
-    //         )}
-    //         <LogoutButton>ログアウト</LogoutButton>
-    //       </>
-    //     ) : (
-    //       <>
-    //         <p>ログインしていません</p>
-    //         <LoginButton />
-    //       </>
-    //     )}
-    //   </div>
-    // </main>
+          <CardFooter className="grid w-full gap-1 text-sm text-muted-foreground max-sm:max-w-[340px] max-sm:px-10">
+            <LogoutButton />
+          </CardFooter>
+        </Card>
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="flex h-auto min-h-screen w-full items-center justify-center">
+        <Link
+          href="/signin"
+          className={cn(buttonVariants({ size: 'lg' }), 'font-semibold')}
+        >
+          サインイン
+        </Link>
+      </div>
+    </>
   )
 }

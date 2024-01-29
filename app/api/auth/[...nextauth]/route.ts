@@ -22,6 +22,12 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+
+  // ミドルウェアからリダイレクトされる際に表示するログインページを
+  // NextAuth が自動的に作成したものではなく、こちらで作成したページで表示する
+  pages: {
+    signIn: '/signin',
+  },
 }
 
 // NextAuth.js を初期化
