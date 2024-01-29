@@ -32,7 +32,7 @@ export default function Home() {
         ) : (
           <>
             <p>ログインしていません</p>
-            <LoginButton>ログイン</LoginButton>
+            <LoginButton />
           </>
         )}
       </div>
