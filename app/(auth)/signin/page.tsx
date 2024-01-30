@@ -1,4 +1,5 @@
 import { OAuthButtons } from '@/components/auth/OAuthButtons'
+import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -7,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 const SigninPage = () => {
@@ -47,6 +49,9 @@ const SigninPage = () => {
               </Link>
             </span>
           </div>
+          <Link href="/" className={cn(buttonVariants(), 'font-semibold mt-4')}>
+            トップページ
+          </Link>
         </CardFooter>
       </Card>
     </div>
