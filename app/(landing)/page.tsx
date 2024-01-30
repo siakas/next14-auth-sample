@@ -41,7 +41,7 @@ export default function Home() {
           </CardContent>
 
           <CardFooter className="grid w-full gap-1 text-sm text-muted-foreground max-sm:max-w-[340px] max-sm:px-10">
-            <LogoutButton />
+            <LogoutButton variant="default" />
           </CardFooter>
         </Card>
       </div>
